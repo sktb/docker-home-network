@@ -1,0 +1,11 @@
+[Unit]
+Description=Bind9 Docker Container
+After=docker.service
+Requires=docker.service
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/docker run -p 53:53/udp --restart=always sktb/bind
+
+[Install]
+WantedBy=local.target
