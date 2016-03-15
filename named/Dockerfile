@@ -1,11 +1,11 @@
-FROM sktb/arch-pi
+FROM resin/rpi-raspbian
 MAINTAINER Simon K T Burrows <sktburrows@gmail.com>
 
-RUN pacman -S -yy
-RUN pacman -S -q --noconfirm bind
+RUN sudo apt-get -q update
+RUN sudo apt-get -q install bind9
 
 ADD ./named.conf /etc/named.conf
 
 EXPOSE 53/udp
 
-CMD ["/bin/named","-g"]
+CMD ["/usr/sbin/named", "-g"]
